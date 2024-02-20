@@ -1,0 +1,46 @@
+[System]
+Name='662020001_MAMDANI'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='kelembapanudara'
+Range=[0 100]
+NumMFs=3
+MF1='tinggi':'trapmf',[80 90 100 100]
+MF2='rendah':'trapmf',[0 0 20 25]
+MF3='sedang':'trimf',[25 55 80]
+
+[Input2]
+Name='suhuruangan'
+Range=[0 100]
+NumMFs=3
+MF1='panas':'trimf',[10 25 40]
+MF2='sedang':'trapmf',[30 40 50 60]
+MF3='dingin':'trapmf',[50 70 100 100]
+
+[Output1]
+Name='kecepatan__putar__kipas__angin'
+Range=[0 100]
+NumMFs=2
+MF1='cepat':'trapmf',[0 0 10 60]
+MF2='lambat':'trapmf',[40 90 100 100]
+
+[Rules]
+2 1, 1 (1) : 1
+2 2, 1 (1) : 1
+2 3, 1 (1) : 1
+3 1, 1 (1) : 1
+3 2, 2 (1) : 1
+3 3, 2 (1) : 1
+1 1, 2 (1) : 1
+1 2, 2 (1) : 1
+1 3, 2 (1) : 1
