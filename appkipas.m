@@ -22,7 +22,7 @@ function varargout = appkipas(varargin)
 
 % Edit the above text to modify the response to help appkipas
 
-% Last Modified by GUIDE v2.5 21-Feb-2024 13:29:44
+% Last Modified by GUIDE v2.5 22-Feb-2024 11:50:10
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -132,30 +132,40 @@ proses = readfis('662020001_MAMDANI');
 hasil = evalfis([handles.kelembapan handles.suhu],proses);
 set(handles.edit5,'string',hasil);
 
-if hasil < 40 {
-        msgbox('cepat');
-        }
-elseif hasil > 60 && hasil<= 100{ 
-        msgbox('lambat');
-        }
-elseif hasil >= 40 && hasil <= 60 {
-        msgbox('sulit ditentukan');
-       }
-end
+% if hasil < 40 {
+%         msgbox('cepat');
+%         }
+% elseif hasil > 60 && hasil<= 100{ 
+%         msgbox('lambat');
+%         }
+% elseif hasil >= 40 && hasil <= 60 {
+%         msgbox('sulit ditentukan');
+%        }
+% end
 
+if hasil < 40
+    set(handles.edit6,'string','Cepat');
+elseif hasil > 60 && hasil <= 100
+    set(handles.edit6,'string','Lambat');
+elseif hasil >= 40 && hasil <= 60
+    set(handles.edit6,'string','????');
+end
 % --- Executes on button press in pushbutton5.
 function pushbutton5_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton5 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+set(handles.edit1,'string','');
+set(handles.edit3,'string','');
+set(handles.edit5,'string','');
+set(handles.edit6,'string','');
 
 % --- Executes on button press in pushbutton6.
 function pushbutton6_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton6 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+close;
 
 
 function edit5_Callback(hObject, eventdata, handles)
@@ -170,6 +180,29 @@ function edit5_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function edit5_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to edit5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit6_Callback(hObject, eventdata, handles)
+% hObject    handle to edit6 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit6 as text
+%        str2double(get(hObject,'String')) returns contents of edit6 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit6_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit6 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
